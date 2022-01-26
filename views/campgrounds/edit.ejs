@@ -1,0 +1,82 @@
+<% layout('layouts/boilerplate') %>
+    <div class="row">
+        <h1 class="text-center">Edit Campground</h1>
+        <!-- more about offset go here: https://getbootstrap.com/docs/5.1/layout/columns/#offsetting-columns -->
+        <div class="col-6 offset-3">
+            <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="post" novalidate
+                class="validated-form" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <!-- https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346312#questions/16149150 -->
+                    <input type="text" class="form-control" id="title" name="campground[title]" required
+                        value="<%= campground.title %>">
+                    <div class="valid-feedback">
+                        Looks good, If you leave extra space in name attribute it also causes error.
+                    </div>
+                </div>
+
+                <div class=" mb-3">
+                    <label class="form-label" for="location">Location:</label>
+                    <input class="form-control" type="text" id="location" name="campground[location]" required
+                        value="<%= campground.location %>">
+                    <div class="valid-feedback">
+                        Looks good
+                    </div>
+                </div>
+
+                <!-- <div class="mb-3"> -->
+                <!-- <label class="form-label" for="image">Add Images:</label> -->
+                <!-- <input class="form-control" type="text" id="imageUrl" name="campground[image]" required
+                        value="<%= campground.image %>">
+                    <div class="valid-feedback">
+                        Looks good
+                    </div> -->
+                <!-- <input type="file" name="image" id="image" multiple> -->
+                <!-- </div> -->
+
+                <div class="mb-3">
+                    <label for="price" class="form-label">Campground Price:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="text" id="price" class="form-control" placeholder="0.00" aria-label="price"
+                            aria-describedby="price-label" name="campground[price]" value="<%= campground.price %>"
+                            required>
+                        <div class="valid-feedback">
+                            Looks good
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 form-floating">
+                    <textarea class="form-control" type="text" id="description" required
+                        name="campground[description]"><%= campground.description %></textarea>
+                    <label class="form-label" for="description">Description</label>
+                    <div class="valid-feedback">
+                        Looks good
+                    </div>
+                </div>
+
+                <div class="input-group mb-3 bs-custom-file input">
+                    <input type="file" name="image" multiple class="form-control" id="image">
+                    <label class="input-group-text" for="image">Add Images</label>
+                </div>
+
+                <div class="mb-3">
+                    <% campground.images.forEach(function(img, i) { %>
+                        <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="">
+                        <div class="form-check-inline">
+                            <input type="checkbox" id="image-<%= i %>" value="<%= img.filename %>"
+                                name="deleteImages[]">
+                        </div>
+                        <label for="image-<%= i %>">Delete</label>
+                        <% }) %>
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-info">Update Campground</button>
+                </div>
+
+            </form>
+            <a href="/campgrounds/<%= campground._id %>">Back To Campground</a>
+        </div>
+    </div>
