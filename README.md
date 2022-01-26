@@ -1,6 +1,6 @@
 # Yelpcamp-Select-your-campground (Full Stack Website)
 
-Website Link -> https://still-meadow-02380.herokuapp.com/
+Website Link -> https://still-meadow-02380.herokuapp.com/ (Heroku hosted)
 
 ## Tools Used
 
